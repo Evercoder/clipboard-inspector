@@ -5,9 +5,59 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 }
 
-#app {
-	padding: 1em;
+.page {
+	padding: 2em;
 	max-width: 60em;
 	margin: 3em auto;
 	background: #fff;
+}
+
+#app {
+	margin: 1em 0;
+}
+
+.mdn {
+	font-family: Consolas, monospace;
+	color: #09c;
+	/*font-weight: bold;*/
+	/*background: #f0f0f0;*/
+	/*display: inline-block;*/
+	/*padding: 0.1em 0.4em;*/
+	text-decoration: none;
+	border-bottom: 1px dotted #aaa;
+}
+
+.anno {
+	font-size: 0.7em;
+	font-weight: normal;
+	color: #555;
+	display: inline-block;
+	margin: 0 1em;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table table {
+	font-size: 0.9em;
+}
+
+tr {
+	border-bottom: 1px solid #eee;
+}
+
+table table tr {
+	border: none;
+}
+
+th, td {
+	text-align: left;
+	padding: 0.5em 0;
+}
+
+.clipboard-section {
+	margin: 2em 0;
+	padding-left: 2em;
 }

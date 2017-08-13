@@ -9,7 +9,7 @@ function file_info(file) {
 	} : null
 }
 
-class ClipboardExplorer extends React.Component {
+class ClipboardInspector extends React.Component {
 
 	render_file(file) {
 		return file ? <table>
@@ -22,12 +22,12 @@ class ClipboardExplorer extends React.Component {
 			</thead>
 			<tbody>
 				<tr>
-					<td>{file.name}</td>
-					<td>{file.size}</td>
-					<td>{file.type}</td>
+					<td><code>{file.name}</code></td>
+					<td><code>{file.size}</code></td>
+					<td><code>{file.type}</code></td>
 				</tr>
 			</tbody>
-		</table> : null;
+		</table> : <em>N/A</em>;
 	}
 
 	render() {
@@ -65,58 +65,96 @@ class ClipboardExplorer extends React.Component {
 
 		return render_data ? 
 		
-			<div>
-				<h1><code>event.clipboardData</code></h1>
-				<h2><code>.types</code> — {render_data.data_by_type.length} type(s)</h2>
-				{ 
-					render_data.data_by_type.map((obj,idx) => 
-						<div key={idx}>
-							<h3><code>{obj.type}</code></h3>
-							<div><code>{obj.data || <em>Empty string</em>}</code></div>
-						</div>
-					) 
-				}
-				<h2>
-					<code>.items</code> — 
-					{render_data.items ? `${render_data.items.length} item(s)` : ''}
-				</h2>
+			<div className='clipboard-summary'>
+				<h1>
+					<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent/clipboardData'>event.clipboardData</a>
+				</h1>
 
-				{ 
-					render_data.items ? 
-						render_data.items.map(
-							(item, idx) => 
-								<div key={idx}>
-									<h3><code>{item.kind} ({item.type})</code></h3>
-									<div>
-										<strong>As file:</strong> 
-										{this.render_file(item.as_file)}
+				<div className='clipboard-section'>
+					<h2>
+						<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/types'>types</a>
+						<span className='anno'>{render_data.data_by_type.length} type(s) available</span>
+					</h2>
+					<table>
+						<thead>
+							<tr>
+								<th>type</th>
+								<th>
+									<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/getData'>getData(type)</a>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+						{ 
+							render_data.data_by_type.map((obj,idx) => 
+								<tr key={idx}>
+									<td><code>{obj.type}</code></td>
+									<td><code>{obj.data || <em>Empty string</em>}</code></td>
+								</tr>
+							) 
+						}
+						</tbody>
+					</table>
+				</div>
+
+				<div className='clipboard-section'>
+					<h2>
+						<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/items'>items</a>
+						<span className='anno'>{render_data.items ? `${render_data.items.length} item(s) available` : 'N/A'}</span>
+					</h2>
+
+					<table>
+						<thead>
+							<tr>
+								<th>kind</th>
+								<th>type</th>
+								<th>
+									<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/getAsFile'>getAsFile()</a>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							{ 
+								render_data.items ? 
+									render_data.items.map(
+										(item, idx) => 
+											<tr key={idx}>
+												<td><code>{item.kind}</code></td>
+												<td><code>{item.type}</code></td>
+												<td>
+													{this.render_file(item.as_file)}
+												</td>
+											</tr>
+									)
+									:
+									<span>N/A</span>
+							}
+						</tbody>
+					</table>
+				</div>
+
+				<div className='clipboard-section'>
+					<h2>
+						<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/files'>files</a>
+						<span className='anno'>{render_data.files ? `${render_data.files.length} file(s) available` : 'N/A'}</span>
+					</h2>
+					{ 
+						render_data.files ? 
+							render_data.files.map(
+								(file, idx) => 
+									<div key={idx}>
+										{this.render_file(file)}
 									</div>
-								</div>
-						)
-						:
-						<span>N/A</span>
-				}
-
-				<h2>
-					<code>.files</code> — 
-					{render_data.files ? `${render_data.files.length} file(s)` : ''}
-				</h2>
-				{ 
-					render_data.files ? 
-						render_data.files.map(
-							(file, idx) => 
-								<div key={idx}>
-									{this.render_file(file)}
-								</div>
-						)
-						:
-						<span>N/A</span>
-				}
+							)
+							:
+							<span>N/A</span>
+					}
+				</div>
 			</div> 
 
 			: 
 
-			<div>No paste event yet</div>;
+			<div>Paste something to get started</div>;
 	}
 }
 
@@ -124,7 +162,7 @@ var app_el = document.getElementById('app');
 
 function render(e) {
 	ReactDOM.render(
-		<ClipboardExplorer event={e}/>, 
+		<ClipboardInspector event={e}/>, 
 		app_el
 	);
 } 
