@@ -20,6 +20,59 @@ In our context `DataTransferItem.getAsString()` seems to be useless, as textual 
 
 [W3C Clipboard API and Events](https://w3c.github.io/clipboard-apis/), Editor's Draft.
 
+## Scenarios
+
+Exploring the behavior of Chrome, Firefox, and Safari in various situations.
+
+### Pasting plain text content
+
+All browsers have a `text/plain` type and the content is easily accessible.
+
+### Pasting HTML content
+
+All browsers provide the HTML content in the `text/html` type, and the stripped-down content in `text/plain` type (similar to `.innerHMTL` vs `.textContent`).
+
+### Pasting RTF content
+
+For example, from Notes or Pages.
+
+### Pasting Google Docs content
+
+All browsers will contain `text/plain` and `text/html` versions of the content. Images sources are URLs. The _originating browser_ (where the Copy operation took place) retains custom, application-specific MIME types. In addition, _Safari_ can report which browser originated the copy through a specific MIME type (but empty content). 
+
+__Firefox__ has `text/plain` and `text/rtf` types. No `text/html`.
+__Chrome__ contains, in addition to `text/plain` and `text/rtf`, a `text/html` representation of the content.
+__Safari__ only contains the stripped down `text/plain` type.
+
+### Pasting an image file from Finder
+
+All three browsers report the file name in `text/plain` type.
+
+__Chrome__ exposes a File of `image/png` type (regardless of the image format on the disk) containing the image data, with the `name` set to `image.png`. 
+
+__Firefox__ exposes a File of `image/png` type containing... _the generic MacOS image thumbnail_, with the `name` set to `image.png`.
+
+__Safari__ exposes a file of `image/*` (depending on the image format) containing, presumably, the image data, but which _cannot_ be transformed into an object URL, with the `name` set to the file name. (Error in console: `Failed to load resource: The operation couldn’t be completed. (WebKitBlobResource error 4.)`)
+
+### Pasting multiple image files from Finder
+
+All three browsers report the _concatenated file names_ in `text/plain` type.
+
+__Firefox__ has no other usable data.
+
+__Chrome__ offers a File with the content of the _last_ image in the selection, under the name `image.png` of type `image/png`.
+
+__Safari__ has individual entries in `files` for each image, but with the same problem in using the image data as the single-image scenario.
+
+### Pasting image data from a system app
+
+For example, copying part of an image in Preview.
+
+__Firefox__ and __Chrome__ report a single entry in the `types` array: `Files`. The image data is available in `files` under the name `image.png` of type `image/png`.
+
+__Safari__ exposes the `public.tiff` and `image/tiff` data types, and no `items`, nor `files`. Data types may be useful in isolating Safari and falling back to pasting into a contentEditable div.
+
+
 ## Browser support
 
 Feature | Firefox | Chrome | Safari
