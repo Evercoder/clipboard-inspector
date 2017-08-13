@@ -9880,7 +9880,7 @@ var ClipboardInspector = function (_React$Component) {
 
 			if (event) {
 				render_data = {
-					data_by_type: event.clipboardData.types.map(function (type) {
+					data_by_type: Array.from(event.clipboardData.types).map(function (type) {
 						var data = event.clipboardData.getData(type);
 						return {
 							type: type,
@@ -10003,10 +10003,14 @@ var ClipboardInspector = function (_React$Component) {
 						_react2.default.createElement(
 							'span',
 							{ className: 'anno' },
-							render_data.items ? render_data.items.length + ' item(s) available' : '<em>Undefined</em>'
+							render_data.items ? render_data.items.length + ' item(s) available' : _react2.default.createElement(
+								'em',
+								null,
+								'Undefined'
+							)
 						)
 					),
-					_react2.default.createElement(
+					render_data.items ? _react2.default.createElement(
 						'table',
 						null,
 						_react2.default.createElement(
@@ -10039,7 +10043,7 @@ var ClipboardInspector = function (_React$Component) {
 						_react2.default.createElement(
 							'tbody',
 							null,
-							render_data.items ? render_data.items.map(function (item, idx) {
+							render_data.items.map(function (item, idx) {
 								return _react2.default.createElement(
 									'tr',
 									{ key: idx },
@@ -10067,17 +10071,9 @@ var ClipboardInspector = function (_React$Component) {
 										_this2.render_file(item.as_file)
 									)
 								);
-							}) : _react2.default.createElement(
-								'tr',
-								null,
-								_react2.default.createElement(
-									'td',
-									{ colSpan: '3' },
-									'N/A'
-								)
-							)
+							})
 						)
-					)
+					) : null
 				),
 				_react2.default.createElement(
 					'div',
@@ -10111,7 +10107,7 @@ var ClipboardInspector = function (_React$Component) {
 			) : _react2.default.createElement(
 				'div',
 				{ className: 'intro-msg' },
-				'Paste something to get started'
+				'Paste something to get started.'
 			);
 		}
 	}]);
