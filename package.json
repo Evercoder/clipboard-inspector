@@ -15,6 +15,7 @@
     "webpack-dev-server": "^2.7.1"
   },
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js"
+    "start": "webpack-dev-server --config webpack.config.js",
+    "build": "webpack --config webpack.config.js"
   }
 }

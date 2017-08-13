@@ -1,0 +1,13 @@
+body {
+	background: #eee;
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+#app {
+	padding: 1em;
+	max-width: 60em;
+	margin: 3em auto;
+	background: #fff;
+}
