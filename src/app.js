@@ -5,7 +5,8 @@ function file_info(file) {
 	return file ? {
 		name: file.name,
 		size: file.size,
-		type: file.type
+		type: file.type,
+		url: URL.createObjectURL(file)
 	} : null
 }
 
@@ -18,6 +19,7 @@ class ClipboardInspector extends React.Component {
 					<th>Name</th>
 					<th>Size</th>
 					<th>Type</th>
+					<th><a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL'>URL.createObjectURL(file)</a></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,6 +27,7 @@ class ClipboardInspector extends React.Component {
 					<td><code>{file.name}</code></td>
 					<td><code>{file.size}</code></td>
 					<td><code>{file.type}</code></td>
+					<td><code><a href={file.url}><img src={file.url}/></a></code></td>
 				</tr>
 			</tbody>
 		</table> : <em>N/A</em>;
@@ -127,7 +130,7 @@ class ClipboardInspector extends React.Component {
 											</tr>
 									)
 									:
-									<span>N/A</span>
+									<tr><td colSpan='3'>N/A</td></tr>
 							}
 						</tbody>
 					</table>
@@ -154,7 +157,7 @@ class ClipboardInspector extends React.Component {
 
 			: 
 
-			<div>Paste something to get started</div>;
+			<div className='intro-msg'>Paste something to get started</div>;
 	}
 }
 
