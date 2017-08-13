@@ -37,6 +37,10 @@ Reading images from the clipboard | Yes | Yes | No ([Issue](https://bugs.webkit.
 * Firefox 50 made [`clipboardData.items` available](https://bugzilla.mozilla.org/show_bug.cgi?id=906420)
 * Firefox 52 changed [`clipboardData.types` to a simple array](https://bugzilla.mozilla.org/show_bug.cgi?id=1298243); that means it's best to always cast `types` to an array, just to be sure.
 
+### Notes
+
+It turns out it's pretty hard to test this across browsers, as Browserstack, Sauce Labs, Browserling et al only support basic clipboard functionality.
+
 ## Running the project locally
 
 The project requires Node and NPM/Yarn to run locally. It's built with React (piped through Babel / Webpack) — a bit more cumbersome to set up but makes it easy to prototype quickly.
