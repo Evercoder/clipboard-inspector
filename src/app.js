@@ -103,7 +103,7 @@ class ClipboardInspector extends React.Component {
 				<div className='clipboard-section'>
 					<h2>
 						<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/items'>items</a>
-						<span className='anno'>{render_data.items ? `${render_data.items.length} item(s) available` : '<em>Undefined</em>'}</span>
+						<span className='anno'>{render_data.items ? `${render_data.items.length} item(s) available` : <em>Undefined</em>}</span>
 					</h2>
 
 					<table>
@@ -157,7 +157,7 @@ class ClipboardInspector extends React.Component {
 
 			: 
 
-			<div className='intro-msg'>Paste something to get started</div>;
+			<div className='intro-msg'>Paste something to get started.</div>;
 	}
 }
 
