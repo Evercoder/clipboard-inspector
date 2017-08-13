@@ -40,7 +40,7 @@ class ClipboardInspector extends React.Component {
 
 		if (event) {
 			render_data = {
-				data_by_type: event.clipboardData.types.map(type => {
+				data_by_type: Array.from(event.clipboardData.types).map(type => {
 					let data = event.clipboardData.getData(type);
 					return {
 						type: type,

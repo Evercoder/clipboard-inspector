@@ -30,6 +30,9 @@ Reading images from the clipboard | Yes | Yes | No ([Issue](https://bugs.webkit.
 <sup>1</sup> Note that this is not mandated by the W3C spec but is indeed a Very Nice Thing To Have.
 <sup>2</sup> While it's impossible to read images from the clipboard in Safari due to lack of support of both `clipboardData.items` and `clipboardData.files`, you can paste into a contentEditable element and retrieve the image from there.
 
+### Browser milestones
+
+* `clipboardData.items` was [introduced in Firefox 50](https://bugzilla.mozilla.org/show_bug.cgi?id=906420)
 
 ## Running the project locally
 
