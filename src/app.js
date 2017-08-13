@@ -106,34 +106,37 @@ class ClipboardInspector extends React.Component {
 						<span className='anno'>{render_data.items ? `${render_data.items.length} item(s) available` : <em>Undefined</em>}</span>
 					</h2>
 
-					<table>
-						<thead>
-							<tr>
-								<th>kind</th>
-								<th>type</th>
-								<th>
-									<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/getAsFile'>getAsFile()</a>
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							{ 
-								render_data.items ? 
-									render_data.items.map(
-										(item, idx) => 
-											<tr key={idx}>
-												<td><code>{item.kind}</code></td>
-												<td><code>{item.type}</code></td>
-												<td>
-													{this.render_file(item.as_file)}
-												</td>
-											</tr>
-									)
-									:
-									<tr><td colSpan='3'>N/A</td></tr>
-							}
-						</tbody>
-					</table>
+					{ 
+						render_data.items ? 
+							<table>
+								<thead>
+									<tr>
+										<th>kind</th>
+										<th>type</th>
+										<th>
+											<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/getAsFile'>getAsFile()</a>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									{ 
+										render_data.items.map(
+											(item, idx) => 
+												<tr key={idx}>
+													<td><code>{item.kind}</code></td>
+													<td><code>{item.type}</code></td>
+													<td>
+														{this.render_file(item.as_file)}
+													</td>
+												</tr>
+										)
+									}
+								</tbody>
+							</table>
+							:
+							null
+					}
+
 				</div>
 
 				<div className='clipboard-section'>
