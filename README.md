@@ -32,7 +32,10 @@ Reading images from the clipboard | Yes | Yes | No ([Issue](https://bugs.webkit.
 
 ### Browser milestones
 
-* `clipboardData.items` was [introduced in Firefox 50](https://bugzilla.mozilla.org/show_bug.cgi?id=906420)
+#### Firefox
+
+* Firefox 50 made [`clipboardData.items` available](https://bugzilla.mozilla.org/show_bug.cgi?id=906420)
+* Firefox 52 changed [`clipboardData.types` to a simple array](https://bugzilla.mozilla.org/show_bug.cgi?id=1298243); that means it's best to always cast `types` to an array, just to be sure.
 
 ## Running the project locally
 
