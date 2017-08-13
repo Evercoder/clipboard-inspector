@@ -4,9 +4,17 @@ Working with the clipboard in web browsers is subject to many inconsistencies. T
 
 Run it online: [https://danburzo.github.io/clipboard-inspector/](https://danburzo.github.io/clipboard-inspector/)
 
-## Notes
+## Reading from the clipboard
 
-`DataTransferItem.getAsString()` seems to be useless, textual data can be read synchronously through other methods.
+A `paste` event contains the `clipboardData` property, which has the following properties of interest:
+
+* `types` is an array of MIME types available in the clipboard;
+* `items` is a list of `DataTransferItem` objects (`DataTransferItemList`);
+* `files` is a list of `File` objects available in the clipboard.
+
+Additionally, `clipboardData` contains the `getData(type)` method to fetch a string representation of the data for a specific format.
+
+In our context `DataTransferItem.getAsString()` seems to be useless, as textual data can be read synchronously through other methods.
 
 ## Browser Issues Reference
 
@@ -14,7 +22,7 @@ Run it online: [https://danburzo.github.io/clipboard-inspector/](https://danburz
 
 ## Running the project locally
 
-The project requires Node and NPM/Yarn to run locally. It's built with React (piped through Babel / Webpack) — bit more cumbersome to set up but makes it easy to prototype fast.
+The project requires Node and NPM/Yarn to run locally. It's built with React (piped through Babel / Webpack) — a bit more cumbersome to set up but makes it easy to prototype quickly.
 
 After cloning the repo, run `yarn` (or `npm install`) in the project folder to install all dependencies. 
 
