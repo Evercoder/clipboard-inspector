@@ -9762,7 +9762,8 @@ function file_info(file) {
 	return file ? {
 		name: file.name,
 		size: file.size,
-		type: file.type
+		type: file.type,
+		url: URL.createObjectURL(file)
 	} : null;
 }
 
@@ -9801,6 +9802,15 @@ var ClipboardInspector = function (_React$Component) {
 							'th',
 							null,
 							'Type'
+						),
+						_react2.default.createElement(
+							'th',
+							null,
+							_react2.default.createElement(
+								'a',
+								{ className: 'mdn', href: 'https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL' },
+								'URL.createObjectURL(file)'
+							)
 						)
 					)
 				),
@@ -9835,6 +9845,19 @@ var ClipboardInspector = function (_React$Component) {
 								'code',
 								null,
 								file.type
+							)
+						),
+						_react2.default.createElement(
+							'td',
+							null,
+							_react2.default.createElement(
+								'code',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: file.url },
+									_react2.default.createElement('img', { src: file.url })
+								)
 							)
 						)
 					)
@@ -9980,7 +10003,7 @@ var ClipboardInspector = function (_React$Component) {
 						_react2.default.createElement(
 							'span',
 							{ className: 'anno' },
-							render_data.items ? render_data.items.length + ' item(s) available' : 'N/A'
+							render_data.items ? render_data.items.length + ' item(s) available' : '<em>Undefined</em>'
 						)
 					),
 					_react2.default.createElement(
@@ -10045,9 +10068,13 @@ var ClipboardInspector = function (_React$Component) {
 									)
 								);
 							}) : _react2.default.createElement(
-								'span',
+								'tr',
 								null,
-								'N/A'
+								_react2.default.createElement(
+									'td',
+									{ colSpan: '3' },
+									'N/A'
+								)
 							)
 						)
 					)
@@ -10066,7 +10093,7 @@ var ClipboardInspector = function (_React$Component) {
 						_react2.default.createElement(
 							'span',
 							{ className: 'anno' },
-							render_data.files ? render_data.files.length + ' file(s) available' : 'N/A'
+							render_data.files ? render_data.files.length + ' file(s) available' : '<em>Undefined</em>'
 						)
 					),
 					render_data.files ? render_data.files.map(function (file, idx) {
@@ -10083,7 +10110,7 @@ var ClipboardInspector = function (_React$Component) {
 				)
 			) : _react2.default.createElement(
 				'div',
-				null,
+				{ className: 'intro-msg' },
 				'Paste something to get started'
 			);
 		}
