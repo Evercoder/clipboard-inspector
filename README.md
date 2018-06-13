@@ -2,7 +2,7 @@
 
 Working with the clipboard in web browsers is subject to many inconsistencies. This tool helps you explore the content of the clipboard when you paste something on a web page.
 
-Run it online: [https://danburzo.github.io/clipboard-inspector/](https://danburzo.github.io/clipboard-inspector/)
+Run it online: [https://evercoder.github.io/clipboard-inspector/](https://evercoder.github.io/clipboard-inspector/)
 
 ## Reading from the clipboard
 
