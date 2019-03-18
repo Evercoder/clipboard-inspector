@@ -104,7 +104,11 @@ To build the project:
 
 `yarn build` (or `npm build`)
 
-I use this to build the JS bundle in the `dist` folder so that you can access the tool online via Github Pages (the repo has Pages set up based on the `master` branch).
+To deploy the project:
+
+`yarn deploy`
+
+This will build the project and push the `dist/` folder on the `gh-pages` Git branch. GitHub Pages is set up to work with this branch.
 
 ## Additional resources
 
