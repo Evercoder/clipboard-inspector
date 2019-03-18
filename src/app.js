@@ -92,7 +92,7 @@ class ClipboardInspector extends React.Component {
 							render_data.data_by_type.map((obj,idx) => 
 								<tr key={idx}>
 									<td><code>{obj.type}</code></td>
-									<td><code>{obj.data || <em>Empty string</em>}</code></td>
+									<td><pre><code>{obj.data || <em>Empty string</em>}</code></pre></td>
 								</tr>
 							) 
 						}

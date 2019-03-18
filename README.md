@@ -98,7 +98,7 @@ To start a local server:
 
 `yarn start` (or `npm start`)
 
-This will make the project available on [http://localhost:8080](http://localhost:8080).
+This will make the project available on [http://localhost:1234](http://localhost:1234).
 
 To build the project:
 

@@ -59,3 +59,7 @@ typings/
 
 # DS_Store
 .DS_Store
+
+# Parcel stuff
+dist
+.cache
