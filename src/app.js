@@ -34,21 +34,21 @@ class ClipboardInspector extends React.Component {
 	}
 
 	render() {
-		let { event } = this.props;
+		let { data_transfer, label } = this.props;
 
 		var render_data = null;
 
 		if (event) {
 			render_data = {
-				data_by_type: Array.from(event.clipboardData.types).map(type => {
-					let data = event.clipboardData.getData(type);
+				data_by_type: Array.from(data_transfer.types).map(type => {
+					let data = data_transfer.getData(type);
 					return {
 						type: type,
 						data: data
 					}
 				}),
-				items: event.clipboardData.items ? 
-					Array.from(event.clipboardData.items).map(item => {
+				items: data_transfer.items ? 
+					Array.from(data_transfer.items).map(item => {
 						return {
 							kind: item.kind,
 							type: item.type,
@@ -57,8 +57,8 @@ class ClipboardInspector extends React.Component {
 					}) 
 					:
 					null,
-				files: event.clipboardData.files ? 
-					Array.from(event.clipboardData.files).map(file => {
+				files: data_transfer.files ? 
+					Array.from(data_transfer.files).map(file => {
 						return file_info(file)
 					}) 
 					:
@@ -70,7 +70,7 @@ class ClipboardInspector extends React.Component {
 		
 			<div className='clipboard-summary'>
 				<h1>
-					<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent/clipboardData'>event.clipboardData</a>
+					<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer'>event.{ label }</a>
 				</h1>
 
 				<div className='clipboard-section'>
@@ -166,9 +166,9 @@ class ClipboardInspector extends React.Component {
 
 var app_el = document.getElementById('app');
 
-function render(e) {
+function render(data, label) {
 	ReactDOM.render(
-		<ClipboardInspector event={e}/>, 
+		<ClipboardInspector data_transfer={data} label={label}/>, 
 		app_el
 	);
 } 
@@ -176,5 +176,19 @@ function render(e) {
 render();
 
 document.addEventListener('paste', (e) => {
-	render(e);
+	render(e.clipboardData, 'clipboardData');
+});
+
+document.addEventListener('dragover', e => {
+ 	e.preventDefault();
+});
+
+document.addEventListener('drop', (e) => {
+	// render(e);
+	try { 
+		render(e.dataTransfer, 'dataTransfer');
+	} catch(err) {
+		console.error(err);
+	}
+	e.preventDefault();
 });
