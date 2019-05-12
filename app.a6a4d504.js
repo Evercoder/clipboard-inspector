@@ -25800,12 +25800,12 @@ function (_React$Component) {
       }, _react.default.createElement("h1", null, _react.default.createElement("a", {
         className: "mdn",
         href: "https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer"
-      }, "event.", label)), _react.default.createElement("div", {
+      }, "event.", label), " contains:"), _react.default.createElement("div", {
         className: "clipboard-section"
       }, _react.default.createElement("h2", null, _react.default.createElement("a", {
         className: "mdn",
         href: "https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/types"
-      }, "types"), _react.default.createElement("span", {
+      }, ".types"), _react.default.createElement("span", {
         className: "anno"
       }, render_data.data_by_type.length, " type(s) available")), _react.default.createElement("table", null, _react.default.createElement("thead", null, _react.default.createElement("tr", null, _react.default.createElement("th", null, "type"), _react.default.createElement("th", null, _react.default.createElement("a", {
         className: "mdn",
@@ -25819,7 +25819,7 @@ function (_React$Component) {
       }, _react.default.createElement("h2", null, _react.default.createElement("a", {
         className: "mdn",
         href: "https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/items"
-      }, "items"), _react.default.createElement("span", {
+      }, ".items"), _react.default.createElement("span", {
         className: "anno"
       }, render_data.items ? "".concat(render_data.items.length, " item(s) available") : _react.default.createElement("em", null, "Undefined"))), render_data.items ? _react.default.createElement("table", null, _react.default.createElement("thead", null, _react.default.createElement("tr", null, _react.default.createElement("th", null, "kind"), _react.default.createElement("th", null, "type"), _react.default.createElement("th", null, _react.default.createElement("a", {
         className: "mdn",
@@ -25833,7 +25833,7 @@ function (_React$Component) {
       }, _react.default.createElement("h2", null, _react.default.createElement("a", {
         className: "mdn",
         href: "https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/files"
-      }, "files"), _react.default.createElement("span", {
+      }, ".files"), _react.default.createElement("span", {
         className: "anno"
       }, render_data.files ? "".concat(render_data.files.length, " file(s) available") : '<em>Undefined</em>')), render_data.files ? render_data.files.map(function (file, idx) {
         return _react.default.createElement("div", {
@@ -25841,7 +25841,7 @@ function (_React$Component) {
         }, _this.render_file(file));
       }) : _react.default.createElement("span", null, "N/A"))) : _react.default.createElement("div", {
         className: "intro-msg"
-      }, "Paste something to get started.");
+      }, "Paste (", _react.default.createElement("kbd", null, "Ctrl+V"), ", ", _react.default.createElement("kbd", null, "\u2318V"), ") or ", _react.default.createElement("kbd", null, "drop\u2193"), " something here.");
     }
   }]);
 
@@ -25865,13 +25865,8 @@ document.addEventListener('dragover', function (e) {
   e.preventDefault();
 });
 document.addEventListener('drop', function (e) {
-  // render(e);
-  try {
-    render(e.dataTransfer, 'dataTransfer');
-  } catch (err) {
-    console.error(err);
-  }
-
+  console.log(e);
+  render(e.dataTransfer, 'dataTransfer');
   e.preventDefault();
 });
 },{"react-dom":"node_modules/react-dom/index.js","react":"node_modules/react/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -25902,7 +25897,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51840" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52355" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

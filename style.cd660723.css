@@ -1,15 +1,31 @@
 body {
-	background: #eee;
 	margin: 0;
 	padding: 0;
 	font-family: Helvetica, Arial, sans-serif;
 	line-height: 1.5;
+	font-size: 90%;
+	color: #335578;
+}
+
+header {
+	max-width: 40em;
+	margin: 2em 0;
+}
+
+a {
+	color: #006be4;
+	border-bottom: 0.25em solid rgba(0,0,0,0.075);
+	text-decoration: none;
+}
+
+a:focus, a:hover, a:active {
+	border-color: rgba(0,0,0,0.3);
 }
 
 .page {
-	padding: 2em;
+	padding: 1em;
 	max-width: 60em;
-	margin: 3em auto;
+	margin: 2em auto;
 	background: #fff;
 }
 
@@ -18,20 +34,17 @@ body {
 }
 
 .mdn {
-	font-family: Consolas, monospace;
-	color: #09c;
-	/*font-weight: bold;*/
-	/*background: #f0f0f0;*/
-	/*display: inline-block;*/
-	/*padding: 0.1em 0.4em;*/
-	text-decoration: none;
-	border-bottom: 1px dotted #aaa;
+	font-family: "Source Code Pro", Consolas, monospace;
+}
+
+kbd, code, pre {
+	font-family: "Source Code Pro", Consolas, monospace;
+	margin: 0;
 }
 
 .anno {
-	font-size: 0.7em;
-	font-weight: normal;
-	color: #555;
+	font-size: 0.6em;
+	font-weight: bold;
 	display: inline-block;
 	margin: 0 1em;
 }
@@ -46,7 +59,7 @@ table table {
 }
 
 tr {
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #ddd;
 }
 
 table table tr {
@@ -56,12 +69,11 @@ table table tr {
 th, td {
 	text-align: left;
 	vertical-align: top;
-	padding: 0.5em;
+	padding: 0.5em 1em;
 }
 
 .clipboard-section {
 	margin: 2em 0;
-	padding-left: 2em;
 }
 
 td img {
@@ -69,11 +81,11 @@ td img {
 }
 
 .intro-msg {
-	font-size: 2em;
-	color: #999;
+	font-size: 1.4em;
 	text-align: center;
-	border: 1px dotted #ccc;
+	background: #f0f0f2;
 	padding: 1em;
+	font-weight: bold;
 }
 
 /*# sourceMappingURL=/style.cd660723.css.map */
