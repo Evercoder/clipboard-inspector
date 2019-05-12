@@ -70,12 +70,12 @@ class ClipboardInspector extends React.Component {
 		
 			<div className='clipboard-summary'>
 				<h1>
-					<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer'>event.{ label }</a>
+					<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer'>event.{ label }</a> contains:
 				</h1>
 
 				<div className='clipboard-section'>
 					<h2>
-						<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/types'>types</a>
+						<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/types'>.types</a>
 						<span className='anno'>{render_data.data_by_type.length} type(s) available</span>
 					</h2>
 					<table>
@@ -102,7 +102,7 @@ class ClipboardInspector extends React.Component {
 
 				<div className='clipboard-section'>
 					<h2>
-						<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/items'>items</a>
+						<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/items'>.items</a>
 						<span className='anno'>{render_data.items ? `${render_data.items.length} item(s) available` : <em>Undefined</em>}</span>
 					</h2>
 
@@ -141,7 +141,7 @@ class ClipboardInspector extends React.Component {
 
 				<div className='clipboard-section'>
 					<h2>
-						<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/files'>files</a>
+						<a className='mdn' href='https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/files'>.files</a>
 						<span className='anno'>{render_data.files ? `${render_data.files.length} file(s) available` : '<em>Undefined</em>'}</span>
 					</h2>
 					{ 
@@ -160,7 +160,7 @@ class ClipboardInspector extends React.Component {
 
 			: 
 
-			<div className='intro-msg'>Paste something to get started.</div>;
+			<div className='intro-msg'>Paste (<kbd>Ctrl+V</kbd>, <kbd>⌘V</kbd>) or <kbd>drop↓</kbd> something here.</div>;
 	}
 }
 
@@ -175,7 +175,7 @@ function render(data, label) {
 
 render();
 
-document.addEventListener('paste', (e) => {
+document.addEventListener('paste', e => {
 	render(e.clipboardData, 'clipboardData');
 });
 
@@ -183,12 +183,8 @@ document.addEventListener('dragover', e => {
  	e.preventDefault();
 });
 
-document.addEventListener('drop', (e) => {
-	// render(e);
-	try { 
-		render(e.dataTransfer, 'dataTransfer');
-	} catch(err) {
-		console.error(err);
-	}
+document.addEventListener('drop', e => {
+	console.log(e);
+	render(e.dataTransfer, 'dataTransfer');
 	e.preventDefault();
 });
