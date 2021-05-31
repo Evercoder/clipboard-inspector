@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
-//import components
-import ClipboardInspector from "./components/clipboard-inspector";
-import Footer from "./components/Footer";
+import React from "react";
 import Header from "./components/Header";
+import ClipboardInspector from "./components/ClipboardInspector";
+import Footer from "./components/Footer";
 
 function App() {
   return (

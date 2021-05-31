@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-const useClipboardData = (props) => {
+export const useDataTransfer = () => {
   // state
   const [dataTransfer, setDataTransfer] = useState(null);
   const [label, setLabel] = useState("");
@@ -42,44 +42,5 @@ const useClipboardData = (props) => {
     console.log("dataTransfer", dataTransfer);
   };
 
-  return dataTransfer;
+  return { dataTransfer, label };
 };
-
-export const parseDataTransfer = (dataTransfer) => {
-  const FileInfo = (file) => {
-    return file
-      ? {
-          name: file.name,
-          size: file.size,
-          type: file.type,
-          url: URL.createObjectURL(file),
-        }
-      : null;
-  };
-
-  return {
-    dataByType: Array.from(dataTransfer.types).map((type) => {
-      let data = dataTransfer.getData(type);
-      return {
-        type: type,
-        data: data,
-      };
-    }),
-    items: dataTransfer.items
-      ? Array.from(dataTransfer.items).map((item) => {
-          return {
-            kind: item.kind,
-            type: item.type,
-            as_file: FileInfo(item.getAsFile()),
-          };
-        })
-      : null,
-    files: dataTransfer.files
-      ? Array.from(dataTransfer.files).map((file) => {
-          return FileInfo(file);
-        })
-      : null,
-  };
-};
-
-export default useClipboardData;

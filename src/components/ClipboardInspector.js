@@ -1,8 +1,15 @@
-import * as React from "react";
-import IntroMSg from "./intro-msg";
+import React from "react";
+import IntroMSg from "./IntroMsg";
+import RenderFile from "./RenderFile";
 
-const RenderData = ({ render_data }) => {
-  return render_data ? (
+import { useRenderData } from "../hooks/useRenderData";
+
+function ClipboardInspector() {
+  const { renderData, label } = useRenderData();
+
+  if (!renderData) return <IntroMSg />;
+
+  return (
     <div className="clipboard-summary">
       <h1>
         <a
@@ -23,7 +30,7 @@ const RenderData = ({ render_data }) => {
             .types
           </a>
           <span className="anno">
-            {render_data.data_by_type.length} type(s) available
+            {renderData.dataByType.length} type(s) available
           </span>
         </h2>
         <table>
@@ -41,7 +48,7 @@ const RenderData = ({ render_data }) => {
             </tr>
           </thead>
           <tbody>
-            {render_data.data_by_type.map((obj, idx) => (
+            {renderData.dataByType.map((obj, idx) => (
               <tr key={idx}>
                 <td>
                   <code>{obj.type}</code>
@@ -66,15 +73,15 @@ const RenderData = ({ render_data }) => {
             .items
           </a>
           <span className="anno">
-            {render_data.items ? (
-              `${render_data.items.length} item(s) available`
+            {renderData.items ? (
+              `${renderData.items.length} item(s) available`
             ) : (
               <em>Undefined</em>
             )}
           </span>
         </h2>
 
-        {render_data.items ? (
+        {renderData.items ? (
           <table>
             <thead>
               <tr>
@@ -91,7 +98,7 @@ const RenderData = ({ render_data }) => {
               </tr>
             </thead>
             <tbody>
-              {render_data.items.map((item, idx) => (
+              {renderData.items.map((item, idx) => (
                 <tr key={idx}>
                   <td>
                     <code>{item.kind}</code>
@@ -99,7 +106,7 @@ const RenderData = ({ render_data }) => {
                   <td>
                     <code>{item.type}</code>
                   </td>
-                  <td>{this.render_file(item.as_file)}</td>
+                  <td>{RenderFile(item.as_file)}</td>
                 </tr>
               ))}
             </tbody>
@@ -116,23 +123,21 @@ const RenderData = ({ render_data }) => {
             .files
           </a>
           <span className="anno">
-            {render_data.files
-              ? `${render_data.files.length} file(s) available`
+            {renderData.files
+              ? `${renderData.files.length} file(s) available`
               : "<em>Undefined</em>"}
           </span>
         </h2>
-        {render_data.files ? (
-          render_data.files.map((file, idx) => (
-            <div key={idx}>{this.render_file(file)}</div>
+        {renderData.files ? (
+          renderData.files.map((file, idx) => (
+            <div key={idx}>{RenderFile(file)}</div>
           ))
         ) : (
           <span>N/A</span>
         )}
       </div>
     </div>
-  ) : (
-    <IntroMSg />
   );
-};
+}
 
-export default RenderData;
+export default ClipboardInspector;
