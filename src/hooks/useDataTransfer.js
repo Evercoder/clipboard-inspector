@@ -1,27 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useEventListener } from "./useEventListener";
 
 export const useDataTransfer = () => {
   // state
   const [dataTransfer, setDataTransfer] = useState(null);
   const [label, setLabel] = useState("");
 
-  // effects
-  useEffect(() => {
-    document.addEventListener("paste", handlePaste);
-    return () => document.removeEventListener("paste", handlePaste);
-  }, []);
-
-  useEffect(() => {
-    document.addEventListener("dragover", handleDragOver);
-    return () => document.removeEventListener("dragover", handleDragOver);
-  }, []);
-
-  useEffect(() => {
-    document.addEventListener("drop", handleDrop);
-    return () => document.removeEventListener("drop", handleDrop);
-  }, []);
-
-  // handles
+  // paste event
   const handlePaste = (event) => {
     event.preventDefault();
     const { clipboardData } = event;
@@ -30,10 +15,16 @@ export const useDataTransfer = () => {
     console.log("clipboardData", clipboardData);
   };
 
+  useEventListener("paste", handlePaste, window);
+
+  // dragover event
   const handleDragOver = (event) => {
     event.preventDefault();
   };
 
+  useEventListener("dragover", handleDragOver, window);
+
+  // drop event
   const handleDrop = (event) => {
     event.preventDefault();
     const { dataTransfer } = event;
@@ -41,6 +32,8 @@ export const useDataTransfer = () => {
     setLabel("dataTransfer");
     console.log("dataTransfer", dataTransfer);
   };
+
+  useEventListener("drop", handleDrop, window);
 
   return { dataTransfer, label };
 };
