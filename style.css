@@ -1,0 +1,134 @@
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	padding: 2em;
+	margin: 1em auto;
+	max-width: 64rem;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+	font: inherit;
+	font-size: max(1em, 16px);
+}
+
+button {
+	appearance: none;
+	border: 2px solid;
+	padding: 0.25em 0.5em;
+	background: #f0f0f0;
+	color: #000;
+	border-radius: 0.2em;
+}
+
+button[disabled] {
+	color: #777;
+	cursor: not-allowed;
+}
+
+footer {
+	margin-top: auto;
+	padding: 2em 0;
+	border-top: 1px solid;
+}
+
+a {
+	color: #006be4;
+}
+
+#app {
+	margin: 1em 0;
+}
+
+.mdn {
+	font-family: 'Source Code Pro', Consolas, monospace;
+}
+
+pre {
+	white-space: pre-wrap;
+}
+
+kbd,
+code,
+pre {
+	font-family: 'Source Code Pro', Consolas, monospace;
+	margin: 0;
+}
+
+.anno {
+	font-size: 0.6em;
+	font-weight: bold;
+	display: inline-block;
+	margin: 0 1em;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table table {
+	font-size: 0.9em;
+}
+
+tr {
+	border-bottom: 1px solid #ddd;
+}
+
+table table tr {
+	border: none;
+}
+
+th,
+td {
+	text-align: left;
+	vertical-align: top;
+	padding: 0.5em 1em;
+}
+
+.clipboard-section {
+	margin: 2em 0;
+}
+
+td img {
+	max-width: 100%;
+}
+
+.intro-msg {
+	background: #fe0;
+	border: 2px solid;
+	padding: 2em;
+	border-radius: 0.2em;
+	margin: 2em 0;
+}
+
+.intro-msg > * {
+	margin: 0;
+}
+
+.intro-msg h2 {
+	font-size: 1em;
+}
+
+.intro-msg ul {
+	padding: 0;
+}
+
+.intro-msg li {
+	margin: 0.5em 0;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h1 + p {
+	font-size: 1.4em;
+	max-width: 60ch;
+}
