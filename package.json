@@ -1,0 +1,38 @@
+{
+	"name": "inspect",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"scripts": {
+		"start": "npm run build -- --servedir=.",
+		"build": "esbuild index.jsx --outfile=index.js --bundle --banner:js='// This file is auto-generated, you want to edit index.js instead!'",
+		"deploy": "npm run build && gh-pages -d ."
+	},
+	"devDependencies": {
+		"esbuild": "^0.12.17",
+		"gh-pages": "^3.2.3",
+		"husky": "^4.3.8",
+		"prettier": "^2.3.2",
+		"pretty-quick": "^3.1.1"
+	},
+	"dependencies": {
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "pretty-quick --staged"
+		}
+	},
+	"prettier": {
+		"bracketSpacing": true,
+		"semi": true,
+		"singleQuote": true,
+		"trailingComma": "none",
+		"useTabs": true,
+		"tabWidth": 4,
+		"jsxBracketSameLine": false,
+		"arrowParens": "avoid",
+		"printWidth": 80
+	}
+}
