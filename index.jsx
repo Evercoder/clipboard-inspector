@@ -211,7 +211,7 @@ function ClipboardInspector(props) {
 														navigator.clipboard &&
 														navigator.clipboard
 															.writeText && (
-															<p>
+															<div class="cb-copy">
 																<button
 																	onClick={e =>
 																		navigator.clipboard.writeText(
@@ -222,11 +222,11 @@ function ClipboardInspector(props) {
 																	Copy as
 																	plain text
 																</button>
-															</p>
+															</div>
 														)}
 												</td>
 												<td>
-													<pre>
+													<pre class="cb-entry">
 														<code>
 															{typeof obj.data ===
 															'object'
