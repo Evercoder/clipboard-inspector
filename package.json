@@ -4,8 +4,8 @@
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
-		"start": "npm run build -- --servedir=.",
-		"build": "esbuild index.jsx --outfile=index.js --bundle --banner:js='// This file is auto-generated, you want to edit index.js instead!'",
+		"start": "esbuild index.jsx --outfile=index.js --bundle --servedir=.",
+		"build": "esbuild index.jsx --outfile=index.js --bundle '--define:process.env.NODE_ENV=\"production\"' --banner:js='// This file is auto-generated, you want to edit index.js instead!'",
 		"deploy": "npm run build && gh-pages -d ."
 	},
 	"devDependencies": {
