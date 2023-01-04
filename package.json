@@ -1,28 +1,22 @@
 {
-	"name": "inspect",
+	"name": "clipboard-inspector",
 	"version": "1.0.0",
-	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
+		"prepare": "git config core.hooksPath .git-hooks",
 		"start": "esbuild index.jsx --outfile=index.js --bundle --servedir=.",
 		"build": "esbuild index.jsx --outfile=index.js --bundle '--define:process.env.NODE_ENV=\"production\"' --banner:js='// This file is auto-generated, you want to edit index.js instead!'",
 		"deploy": "npm run build && gh-pages -d ."
 	},
 	"devDependencies": {
-		"esbuild": "^0.12.17",
-		"gh-pages": "^3.2.3",
-		"husky": "^4.3.8",
-		"prettier": "^2.3.2",
-		"pretty-quick": "^3.1.1"
+		"esbuild": "^0.16.13",
+		"gh-pages": "^4.0.0",
+		"prettier": "^2.8.1",
+		"pretty-quick": "^3.1.3"
 	},
 	"dependencies": {
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "pretty-quick --staged"
-		}
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
 	},
 	"prettier": {
 		"bracketSpacing": true,

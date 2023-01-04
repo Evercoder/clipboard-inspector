@@ -139,7 +139,7 @@ h1 {
 	line-height: 1.2;
 }
 
-@supports(width: max-content) {
+@supports (width: max-content) {
 	h1 {
 		width: max-content;
 		border: 0.1em solid;
@@ -149,7 +149,6 @@ h1 {
 		box-shadow: 0.1em 0.1em currentColor;
 	}
 }
-
 
 h1 + p {
 	font-size: 1.4em;
