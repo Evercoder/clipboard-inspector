@@ -148,6 +148,12 @@ function ClipboardInspector(props) {
 						keyboard shortcut
 					</li>
 					<li>Drop something on the page</li>
+					<li>
+						<span contentEditable class="editable">
+							Paste using context menu
+						</span>{' '}
+						if you are on mobile.
+					</li>
 				</ul>
 			</div>
 		);
