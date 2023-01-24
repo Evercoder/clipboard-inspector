@@ -33,6 +33,10 @@
 	var __toESM = (mod, isNodeMode, target) => (
 		(target = mod != null ? __create(__getProtoOf(mod)) : {}),
 		__copyProps(
+			// If the importer is in node compatibility mode or this is not an ESM
+			// file that has been converted to a CommonJS file using a Babel-
+			// compatible transform (i.e. "__esModule" has not been set), then set
+			// "default" to the CommonJS "module.exports" for node compatibility.
 			isNodeMode || !mod || !mod.__esModule
 				? __defProp(target, 'default', { value: mod, enumerable: true })
 				: target,
@@ -10309,6 +10313,13 @@
 				render(data2, 'ClipboardItems');
 			});
 		}, []);
+		const autoselect = (0, import_react.useCallback)(e => {
+			const range = document.createRange();
+			range.selectNodeContents(e.target);
+			const selection = window.getSelection();
+			selection.removeAllRanges();
+			selection.addRange(range);
+		}, []);
 		function render_file(file) {
 			return file
 				? /* @__PURE__ */ import_react.default.createElement(
@@ -10446,23 +10457,20 @@
 							'\u2318V'
 						),
 						' ',
-						'keyboard shortcut'
+						'keyboard shortcut or',
+						' ',
+						/* @__PURE__ */ import_react.default.createElement(
+							'span',
+							{ contentEditable: true, onFocus: autoselect },
+							'paste in here'
+						),
+						' ',
+						"if you don't have a keyboard"
 					),
 					/* @__PURE__ */ import_react.default.createElement(
 						'li',
 						null,
 						'Drop something on the page'
-					),
-					/* @__PURE__ */ import_react.default.createElement(
-						'li',
-						null,
-						/* @__PURE__ */ import_react.default.createElement(
-							'span',
-							{ contentEditable: true, class: 'editable' },
-							'Paste using context menu'
-						),
-						' ',
-						'if you are on mobile.'
 					)
 				)
 			);

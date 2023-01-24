@@ -20,16 +20,15 @@ body {
 input,
 select,
 textarea,
-button {
+button,
+[contenteditable] {
 	font: inherit;
 	font-size: max(1em, 16px);
 }
 
-button,
-.editable {
+button {
 	appearance: none;
 	border: 0.1em solid;
-	display: inline-block;
 	padding: 0.25em 0.5em;
 	background: #f3f3f3;
 	color: #000;
@@ -37,9 +36,15 @@ button,
 	box-shadow: 0.1em 0.1em currentColor;
 }
 
-button:active,
-.editable:active {
+button:active {
 	background: #fe0;
+}
+
+[contenteditable] {
+	white-space: nowrap;
+	padding: 0.25em 0.5em;
+	border: 1px dotted;
+	background: #fff;
 }
 
 button[disabled] {
@@ -74,6 +79,10 @@ code,
 pre {
 	font-family: 'Source Code Pro', Consolas, monospace;
 	margin: 0;
+}
+
+kbd {
+	border-bottom: 1px dotted;
 }
 
 .anno {

@@ -88,6 +88,14 @@ function ClipboardInspector(props) {
 		});
 	}, []);
 
+	const autoselect = useCallback(e => {
+		const range = document.createRange();
+		range.selectNodeContents(e.target);
+		const selection = window.getSelection();
+		selection.removeAllRanges();
+		selection.addRange(range);
+	}, []);
+
 	function render_file(file) {
 		return file ? (
 			<table>
@@ -145,15 +153,13 @@ function ClipboardInspector(props) {
 					</li>
 					<li>
 						Paste with the <kbd>Ctrl+V</kbd> / <kbd>⌘V</kbd>{' '}
-						keyboard shortcut
+						keyboard shortcut or{' '}
+						<span contentEditable onFocus={autoselect}>
+							paste in here
+						</span>{' '}
+						if you don't have a keyboard
 					</li>
 					<li>Drop something on the page</li>
-					<li>
-						<span contentEditable class="editable">
-							Paste using context menu
-						</span>{' '}
-						if you are on mobile.
-					</li>
 				</ul>
 			</div>
 		);
