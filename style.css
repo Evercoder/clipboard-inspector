@@ -25,9 +25,11 @@ button {
 	font-size: max(1em, 16px);
 }
 
-button {
+button,
+.editable {
 	appearance: none;
 	border: 0.1em solid;
+	display: inline-block;
 	padding: 0.25em 0.5em;
 	background: #f3f3f3;
 	color: #000;
@@ -35,7 +37,8 @@ button {
 	box-shadow: 0.1em 0.1em currentColor;
 }
 
-button:active {
+button:active,
+.editable:active {
 	background: #fe0;
 }
 
