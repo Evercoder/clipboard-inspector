@@ -20,7 +20,8 @@ body {
 input,
 select,
 textarea,
-button {
+button,
+[contenteditable] {
 	font: inherit;
 	font-size: max(1em, 16px);
 }
@@ -37,6 +38,13 @@ button {
 
 button:active {
 	background: #fe0;
+}
+
+[contenteditable] {
+	white-space: nowrap;
+	padding: 0.25em 0.5em;
+	border: 1px dotted;
+	background: #fff;
 }
 
 button[disabled] {
@@ -71,6 +79,10 @@ code,
 pre {
 	font-family: 'Source Code Pro', Consolas, monospace;
 	margin: 0;
+}
+
+kbd {
+	border-bottom: 1px dotted;
 }
 
 .anno {

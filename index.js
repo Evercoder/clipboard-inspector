@@ -18,6 +18,10 @@
     return to;
   };
   var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
     isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
     mod
   ));
@@ -7857,6 +7861,13 @@
         render(data2, "ClipboardItems");
       });
     }, []);
+    const autoselect = (0, import_react.useCallback)((e) => {
+      const range = document.createRange();
+      range.selectNodeContents(e.target);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }, []);
     function render_file(file) {
       return file ? /* @__PURE__ */ import_react.default.createElement("table", null, /* @__PURE__ */ import_react.default.createElement("thead", null, /* @__PURE__ */ import_react.default.createElement("tr", null, /* @__PURE__ */ import_react.default.createElement("th", null, "Name"), /* @__PURE__ */ import_react.default.createElement("th", null, "Size"), /* @__PURE__ */ import_react.default.createElement("th", null, "Type"), /* @__PURE__ */ import_react.default.createElement("th", null, /* @__PURE__ */ import_react.default.createElement(
         "a",
@@ -7868,7 +7879,7 @@
       )))), /* @__PURE__ */ import_react.default.createElement("tbody", null, /* @__PURE__ */ import_react.default.createElement("tr", null, /* @__PURE__ */ import_react.default.createElement("td", null, /* @__PURE__ */ import_react.default.createElement("code", null, file.name)), /* @__PURE__ */ import_react.default.createElement("td", null, /* @__PURE__ */ import_react.default.createElement("code", null, file.size)), /* @__PURE__ */ import_react.default.createElement("td", null, /* @__PURE__ */ import_react.default.createElement("code", null, file.type)), /* @__PURE__ */ import_react.default.createElement("td", null, /* @__PURE__ */ import_react.default.createElement("code", null, /* @__PURE__ */ import_react.default.createElement("a", { href: file.url }, /* @__PURE__ */ import_react.default.createElement("img", { src: file.url }))))))) : /* @__PURE__ */ import_react.default.createElement("em", null, "N/A");
     }
     if (!data.length) {
-      return /* @__PURE__ */ import_react.default.createElement("div", { className: "intro-msg" }, /* @__PURE__ */ import_react.default.createElement("h2", null, "To get started, either:"), /* @__PURE__ */ import_react.default.createElement("ul", null, /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("button", { disabled: has_async_clipboard, onClick: paste }, "Paste using the Clipboard API"), " ", "if your browser supports the Asynchronous Clipboard API"), /* @__PURE__ */ import_react.default.createElement("li", null, "Paste with the ", /* @__PURE__ */ import_react.default.createElement("kbd", null, "Ctrl+V"), " / ", /* @__PURE__ */ import_react.default.createElement("kbd", null, "\u2318V"), " ", "keyboard shortcut"), /* @__PURE__ */ import_react.default.createElement("li", null, "Drop something on the page")));
+      return /* @__PURE__ */ import_react.default.createElement("div", { className: "intro-msg" }, /* @__PURE__ */ import_react.default.createElement("h2", null, "To get started, either:"), /* @__PURE__ */ import_react.default.createElement("ul", null, /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("button", { disabled: has_async_clipboard, onClick: paste }, "Paste using the Clipboard API"), " ", "if your browser supports the Asynchronous Clipboard API"), /* @__PURE__ */ import_react.default.createElement("li", null, "Paste with the ", /* @__PURE__ */ import_react.default.createElement("kbd", null, "Ctrl+V"), " / ", /* @__PURE__ */ import_react.default.createElement("kbd", null, "\u2318V"), " ", "keyboard shortcut or", " ", /* @__PURE__ */ import_react.default.createElement("span", { contentEditable: true, onFocus: autoselect }, "paste in here"), " ", "if you don't have a keyboard"), /* @__PURE__ */ import_react.default.createElement("li", null, "Drop something on the page")));
     }
     return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("button", { type: "button", onClick: (e) => render() }, "\u2190 Go back"), data.map((render_data, idx) => {
       const URLS = MDN_URLS[render_data.type];

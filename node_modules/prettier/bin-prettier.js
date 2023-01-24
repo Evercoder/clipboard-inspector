@@ -42,7 +42,9 @@ var require_please_upgrade_node = __commonJS({
         if (opts.message) {
           console.error(opts.message(requiredVersion));
         } else {
-          console.error(pkg.name + " requires at least version " + requiredVersion + " of Node, please upgrade");
+          console.error(
+            pkg.name + " requires at least version " + requiredVersion + " of Node, please upgrade"
+          );
         }
         if (opts.hasOwnProperty("exitCode")) {
           process.exit(opts.exitCode);
