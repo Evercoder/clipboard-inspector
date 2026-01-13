@@ -182,6 +182,31 @@ h1 + p {
 	padding: 0.5em 0.5em 0.5em 0;
 }
 
+.action-buttons {
+	display: flex;
+	gap: 1em;
+	margin-bottom: 1em;
+	flex-wrap: wrap;
+}
+
+.download-button {
+	background: #00c853;
+	color: white;
+	font-weight: bold;
+	border-color: #00a043;
+}
+
+.download-button:active {
+	background: #00a043;
+}
+
+.download-button[disabled] {
+	background: #ccc;
+	color: #777;
+	border-color: #999;
+	cursor: not-allowed;
+}
+
 @media (max-width: 60ch) {
 	html {
 		font-size: 90%;
