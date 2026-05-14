@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 const MDN_BASE = `https://developer.mozilla.org/en-US/docs/Web/API`;
@@ -25,6 +25,64 @@ const MDN_URLS = {
 		}
 	}
 };
+
+const TEXT_COPY_MIME_OPTIONS = [
+	{ value: 'text/plain', label: 'Plain text' },
+	{ value: 'text/html', label: 'HTML' }
+];
+
+function CopyAsMime({ text }) {
+	const [mimeType, setMimeType] = useState('text/plain');
+
+	const writeAsMime = useCallback(async () => {
+		if (!navigator.clipboard) {
+			return;
+		}
+
+		if (navigator.clipboard.write && window.ClipboardItem) {
+			try {
+				const items = {
+					'text/plain': new Blob([text], {
+						type: 'text/plain'
+					})
+				};
+
+				if (mimeType !== 'text/plain') {
+					items[mimeType] = new Blob([text], {
+						type: mimeType
+					});
+				}
+
+				await navigator.clipboard.write([new ClipboardItem(items)]);
+			} catch (error) {
+				console.warn(
+					'ClipboardItem write failed, falling back to writeText',
+					error
+				);
+			}
+		} else if (navigator.clipboard.writeText) {
+			await navigator.clipboard.writeText(text);
+		}
+	}, [mimeType, text]);
+
+	return (
+		<div className="cb-copy-as-dropdown">
+			<button type="button" onClick={writeAsMime}>
+				Copy as
+			</button>
+			<select
+				value={mimeType}
+				onChange={e => setMimeType(e.target.value)}
+			>
+				{TEXT_COPY_MIME_OPTIONS.map(option => (
+					<option key={option.value} value={option.value}>
+						{option.label}
+					</option>
+				))}
+			</select>
+		</div>
+	);
+}
 
 async function extractData(data) {
 	if (!data) {
@@ -230,22 +288,13 @@ function ClipboardInspector(props) {
 														navigator.clipboard &&
 														navigator.clipboard
 															.writeText && (
-															<div class="cb-copy">
-																<button
-																	onClick={e =>
-																		navigator.clipboard.writeText(
-																			obj.data
-																		)
-																	}
-																>
-																	Copy as
-																	plain text
-																</button>
-															</div>
+															<CopyAsMime
+																text={obj.data}
+															/>
 														)}
 												</td>
 												<td>
-													<pre class="cb-entry">
+													<pre className="cb-entry">
 														<code>
 															{typeof obj.data ===
 															'object'
@@ -326,7 +375,7 @@ function ClipboardInspector(props) {
 														<td>
 															{item.kind ===
 															'string' ? (
-																<pre class="cb-entry">
+																<pre className="cb-entry">
 																	<code>
 																		{item.as_string_or_file || (
 																			<em>

@@ -178,8 +178,42 @@ h1 + p {
 	margin: -0.5em 0;
 }
 
-.cb-copy {
-	padding: 0.5em 0.5em 0.5em 0;
+.cb-copy-as-dropdown {
+	margin-top: 0.75em;
+	display: inline-flex;
+	align-items: stretch;
+	border: 0.1em solid;
+	background: #f3f3f3;
+	box-shadow: 0.1em 0.1em currentColor;
+}
+
+.cb-copy-as-dropdown button {
+	appearance: none;
+	border: none;
+	background: transparent;
+	padding: 0.5em 0.75em;
+	font: inherit;
+	cursor: pointer;
+}
+
+.cb-copy-as-dropdown select {
+	border: none;
+	background: #fff;
+	padding: 0.5em 0.6em;
+	font: inherit;
+	color: inherit;
+	outline: none;
+	width: 7em;
+}
+
+.cb-copy-as-dropdown button:hover,
+.cb-copy-as-dropdown select:hover {
+	background: #fafafa;
+}
+
+.cb-copy-as-dropdown button:focus,
+.cb-copy-as-dropdown select:focus {
+	outline: 2px solid #006be4;
 }
 
 @media (max-width: 60ch) {
