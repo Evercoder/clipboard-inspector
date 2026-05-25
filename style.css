@@ -182,6 +182,57 @@ h1 + p {
 	padding: 0.5em 0.5em 0.5em 0;
 }
 
+.toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	align-items: center;
+	margin-bottom: 1em;
+}
+
+.share-box {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25em;
+	flex: 1 1 100%;
+	margin-top: 0.5em;
+}
+
+.share-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	align-items: center;
+}
+
+.share-box input[type='text'] {
+	flex: 1 1 20em;
+	min-width: 0;
+	padding: 0.25em 0.5em;
+	border: 0.1em solid;
+	background: #fff;
+	font-family: 'Source Code Pro', Consolas, monospace;
+	font-size: 0.85em;
+}
+
+.share-note {
+	font-size: 0.85em;
+	color: #666;
+	font-style: italic;
+}
+
+.share-error {
+	flex: 1 1 100%;
+	color: #a00;
+	font-size: 0.9em;
+}
+
+.copy-back-error {
+	flex: 1 1 100%;
+	color: #a00;
+	font-size: 0.9em;
+}
+
 @media (max-width: 60ch) {
 	html {
 		font-size: 90%;
